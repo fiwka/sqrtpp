@@ -11,36 +11,53 @@
 </head>
 <body>
     <main class="app">
-        <div class="calc">
-            <div class="lang_choose">
-                <label for="lang_select">Выберите язык:</label>
-                <select name="lang" id="lang_select">
-                    <option value="ru_RU">Русский</option>
-                    <option value="en_US">English</option>
-                </select>
+        <div class="functional_part">
+            <div class="calc">
+                <div class="lang_choose">
+                    <label for="lang_select">Выберите язык:</label>
+                    <select name="lang" id="lang_select">
+                        <option value="ru_RU">Русский</option>
+                        <option value="en_US">English</option>
+                    </select>
+                </div>
+                <form onclick="do_magic(e)" class="calc_form">
+                    <div class="params">
+                        <div class="precision_container">
+                            <label for="precision_textbox">Укажите точность вычислений</label>
+                            <input type="number" min="0" max="1000000" step="1" name="precision" id="precision_textbox">
+                        </div>
+                        <div class="is_analytical_container">
+                            <label for="is_analytical_checkbox">Считать корень аналитически</label>
+                            <input type="checkbox" name="is_analytical" id="is_analytical_checkbox">
+                        </div>
+                    </div>
+                    <div class="radical">
+                        <label for="radical_texbox">Введите подкоренное выражение:</label>
+                        <input type="text" name="radical" id="radical_texbox">
+                    </div>
+                    <button type="submit">Ввести</button>
+                </form>
+                <div class="result_label">Результат вычислений:</div>
+                <div class="result" hidden>
+                    <span>±</span>
+                    <span class="result_integer"></span>.
+                    <span class="result_fract"></span>
+                    <span class="result_is_complex" hidden><b>i</b></span>
+                </div>
             </div>
-            <form onclick="do_magic(e)" class="calc_form">
-                <div class="params">
-                    <div class="precision_container">
-                        <label for="precision_textbox">Укажите точность вычислений</label>
-                        <input type="number" min="0" max="1000000" step="1" name="precision" id="precision_textbox">
-                    </div>
-                    <div class="is_analytical_container">
-                        <label for="is_analytical_checkbox">Считать корень аналитически</label>
-                        <input type="checkbox" name="is_analytical" id="is_analytical_checkbox">
-                    </div>
-                </div>
-                <div class="radical">
-                    <label for="radical_texbox">Введите подкоренное выражение:</label>
-                    <input type="text" name="radical" id="radical_texbox">
-                </div>
-            </form>
-            <div class="result_label">Результат вычислений:</div>
-            <div class="result" hidden>
-                <span>±</span>
-                <span class="result_integer"></span>.
-                <span class="result_fract"></span>
-                <span class="result_is_complex" hidden><b>i</b></span>
+            <div class="lang_creator">
+                <form onclick="addlang(e)">
+                    <button type="submit">Add language</button>
+                    <span></span>
+                    <input type="text" name="name" id="lang_name_texbox" placeholder="Enter language name">
+                    <input type="text" name="name" id="lang_name_texbox" placeholder="Select language">
+                    <input type="text" name="name" id="lang_name_texbox" placeholder="Specify the accuracy of calculations">
+                    <input type="text" name="name" id="lang_name_texbox" placeholder="Calculate the root analytically">
+                    <input type="text" name="name" id="lang_name_texbox" placeholder="Enter the radical expression">
+                    <input type="text" name="name" id="lang_name_texbox" placeholder="Enter">
+                    <input type="text" name="name" id="lang_name_texbox" placeholder="Calculation result">
+                    <input type="text" name="name" id="lang_name_texbox" placeholder="Title">
+                </form>
             </div>
         </div>
         <div class="docs"></div>
