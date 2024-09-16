@@ -1,0 +1,26 @@
+* {
+    /* border: 1px solid black; */
+}
+
+.params {
+    margin-bottom: 1.5rem;
+}
+
+.params, .app, .radical {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.params {
+    justify-content: space-between;
+}
+
+.app > * {
+    flex: 1 1 50%;
+    min-width: 800px;
+    min-height: 1rem;
+}
+
+#radical_texbox {
+    flex-grow: 1;
+}
