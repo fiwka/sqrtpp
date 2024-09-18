@@ -1,16 +1,17 @@
 const NUMBER_REGEX = /^-?\d+(.\d+)?$/i
 
-function parseInput(str) {
-    if (!NUMBER_REGEX.test(str)) // TODO: check error
-        return new Big("0")
+function parseInput(str, big) {
+    if (!NUMBER_REGEX.test(str))
+        return alert("error")
 
-    return new Big(str)
+    return big ? new Big(str) : +str
 }
 
 function approximateSqrt(x, precision) {
+    x = parseInput(x, true)
     return {
         isComplex: x.lt(0),
-        number: x.abs().sqrt().toFixed(precision)
+        number: x.abs().sqrt().toFixed(parseInput(precision))
     }
 }
 
@@ -41,7 +42,6 @@ function findInOutRoot(x) {
     const tens = e < 0 ? (Math.abs(e) % 2 === 0 ? Math.abs(e) / 2 : (Math.abs(e) - 1) / 2) : 0
     e += tens * 2
     const factors = primeFactorize(x)
-    console.log(factors)
     const outFactors = {}
     const inFactors = {}
     if (tens > 0)
@@ -56,9 +56,6 @@ function findInOutRoot(x) {
         if (count - (2 * out) > 0)
             inFactors[factor] = count - (2 * out)
     }
-
-    console.log(outFactors)
-    console.log(inFactors)
 
     let outRoot = new Big('1')
     let inRoot = new Big('1')
@@ -76,6 +73,7 @@ function findInOutRoot(x) {
 }
 
 function analyticSqrt(x) {
+    x = parseInput(x, true)
     const parts = findInOutRoot(x.abs())
     return {
         isComplex: x.lt(0),
@@ -84,7 +82,7 @@ function analyticSqrt(x) {
     }
 }
 
-const test = analyticSqrt(new Big('-2.5'))
+const test = analyticSqrt('-2.5')
 
 console.log(test.outRoot + " in " + test.inRoot)
 console.log(test)
