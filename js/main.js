@@ -1,4 +1,4 @@
-const NUMBER_REGEX = /^-?\d+(.\d+)?$/i
+const NUMBER_REGEX = /^-?\d+(.\d+)?$/
 
 function parseInput(str, big) {
     if (!NUMBER_REGEX.test(str))
@@ -9,9 +9,10 @@ function parseInput(str, big) {
 
 function approximateSqrt(x, precision) {
     x = parseInput(x, true)
+    Big.DP = parseInput(precision)
     return {
         isComplex: x.lt(0),
-        number: x.abs().sqrt().toFixed(parseInput(precision))
+        number: x.abs().sqrt()
     }
 }
 
@@ -73,6 +74,7 @@ function findInOutRoot(x) {
 }
 
 function analyticSqrt(x) {
+    Big.DP = parseInput(20)
     x = parseInput(x, true)
     const parts = findInOutRoot(x.abs())
     return {

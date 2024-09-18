@@ -18,7 +18,8 @@
 }
 
 .app {
-    min-height: 100vh;
+    margin: 1rem;
+    min-height: calc(100vh - 2rem);
 }
 
 .app > * {
