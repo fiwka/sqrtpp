@@ -1,12 +1,40 @@
+// регулярное выражение для определения является ли содержимое строки числом
 const NUMBER_REGEX = /^-?\d+(.\d+)?$/
 
+class Error {
+
+    error
+    precision
+
+    constructor(error, precision) {
+        this.error = error
+        this.precision = precision
+    }
+}
+
+/**
+ * Функция, которая принимает на вход строку с предположительно числом
+ *
+ * @param str входная строка
+ * @param big возвращать тип Big в случае true, иначе number
+ * @throws Error в случае неверного ввода
+ * @returns Big или number в зависимости от параметра big
+ * */
 function parseInput(str, big) {
     if (!NUMBER_REGEX.test(str))
-        return alert("error")
+        throw new Error("format_error", !!big)
 
     return big ? new Big(str) : +str
 }
 
+/**
+ * Функция вычисления приблизительного значения квадратного корня
+ *
+ * @param x входная строка с числом
+ * @param precision входная строка с точностью
+ * @throws Error в случае неверного ввода
+ * @returns объект с полями isComplex - является ли результат комплексным, number - Big являющийся значением арифметического корня
+ * */
 function approximateSqrt(x, precision) {
     x = parseInput(x, true)
     Big.DP = parseInput(precision)
@@ -16,6 +44,12 @@ function approximateSqrt(x, precision) {
     }
 }
 
+/**
+ * Функция разложения числа на простые множители
+ *
+ * @param x входное число типа Big
+ * @returns объект содержащий пары множитель (тип Big) - количество множителей (тип number)
+ */
 function primeFactorize(x) {
     const factors = {}
     let i = new Big('2')
@@ -34,6 +68,12 @@ function primeFactorize(x) {
     return factors
 }
 
+/**
+ * Поиск множителя за и под знаком корня
+ *
+ * @param x входное число типа Big
+ * @returns {{outRoot: Big, inRoot: Big}}
+ */
 function findInOutRoot(x) {
     let e = 0
     while (!x.eq(x.round(0, Big.roundDown))) {
@@ -73,6 +113,14 @@ function findInOutRoot(x) {
     return { outRoot, inRoot }
 }
 
+/**
+ * Функция вычисления точного значения квадратного корня
+ *
+ * @param x входная строка с числом
+ * @param precision входная строка с точностью
+ * @throws Error в случае неверного ввода
+ * @returns объект с полями isComplex - является ли результат комплексным, outRoot - множитель за знаком корня, inRoot - множитель под знаком корня
+ * */
 function analyticSqrt(x) {
     Big.DP = parseInput(20)
     x = parseInput(x, true)
@@ -83,8 +131,3 @@ function analyticSqrt(x) {
         inRoot: parts.inRoot
     }
 }
-
-const test = analyticSqrt('-2.5')
-
-console.log(test.outRoot + " in " + test.inRoot)
-console.log(test)
