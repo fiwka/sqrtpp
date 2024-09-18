@@ -7,11 +7,11 @@ class input_object {
     }
 }
 
-const INPUT_FIELDS = new input_object(
+const INPUT_FIELDS = Object.freeze(new input_object(
     document.getElementById("approximation_radio_2"),
     document.getElementById("precision_textbox"),
     document.getElementById("radical_texbox")
-)
+))
 
 document.querySelector(".calc_form").addEventListener("submit", do_magic);
 
