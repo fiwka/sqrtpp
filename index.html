@@ -5,7 +5,9 @@
     <title>sqrtpp</title>
 
     <script src="js/big.min.js"></script>
+
     <script src="js/main.js" defer></script>
+    <script src="js/calculator.js" defer></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -20,11 +22,11 @@
                         <option value="en_US">English</option>
                     </select>
                 </div>
-                <form onclick="do_magic(e)" class="calc_form">
+                <form class="calc_form">
                     <div class="params">
                         <div class="precision_container">
                             <label for="precision_textbox">Укажите точность вычислений</label>
-                            <input type="number" min="0" max="1000000" step="1" name="precision" id="precision_textbox">
+                            <input type="number" min="0" max="1000000" step="1" value="10" name="precision" id="precision_textbox">
                         </div>
                         <div class="is_analytical_container">
                             <label for="is_analytical_checkbox">Считать корень аналитически</label>
@@ -33,20 +35,28 @@
                     </div>
                     <div class="radical">
                         <label for="radical_texbox">Введите подкоренное выражение:</label>
-                        <input type="text" name="radical" id="radical_texbox">
+                        <span class="root">
+                            <input type="text" name="radical" id="radical_texbox" class="radicand">
+                        </span>
                     </div>
                     <button type="submit">Ввести</button>
                 </form>
                 <div class="result_label">Результат вычислений:</div>
-                <div class="result" hidden>
-                    <span>±</span>
-                    <span class="result_integer"></span>.
-                    <span class="result_fract"></span>
-                    <span class="result_is_complex" hidden><b>i</b></span>
+                <div class="result">
+                    <!-- <span class="plus_menus">±</span>
+                    <span class="nonanalitical">
+                        <span class="result_integer"></span>.
+                        <span class="result_fract"></span>
+                    </span>
+                    <span class="analytical">
+                        <span class="out_root"></span> + 
+
+                    </span>
+                    <span class="result_is_complex" hidden><b>i</b></span> -->
                 </div>
             </div>
             <div class="lang_creator">
-                <form onclick="addlang(e)">
+                <form onsubmit="addlang(e)">
                     <button type="submit">Add language</button>
                     <span></span>
                     <input type="text" name="name" id="lang_name_texbox" placeholder="Enter language name">
