@@ -29,8 +29,10 @@
                             <input type="number" min="0" max="1000000" step="1" value="10" name="precision" id="precision_textbox">
                         </div>
                         <div class="is_analytical_container">
-                            <label for="is_analytical_checkbox">Считать корень аналитически</label>
-                            <input type="checkbox" name="is_analytical" id="is_analytical_checkbox">
+                            <label for="approximation_radio_1">Приблизительные вычисления</label>
+                            <input type="radio" name="approximation" id="approximation_radio_1" value="false">
+                            <label for="approximation_radio_2">Точные вычисления</label>
+                            <input type="radio" name="approximation" id="approximation_radio_2" value="true">
                         </div>
                     </div>
                     <div class="radical">

@@ -8,7 +8,7 @@ class input_object {
 }
 
 const INPUT_FIELDS = new input_object(
-    document.getElementById("is_analytical_checkbox"),
+    document.getElementById("approximation_radio_2"),
     document.getElementById("precision_textbox"),
     document.getElementById("radical_texbox")
 )
@@ -46,7 +46,16 @@ function update_view(value, is_analytical) {
     if (value === 0) {
         result_field.innerHTML = "0"
     } else if (is_analytical) {
-        result_field.innerHTML = "± " + value.outRoot + " + <span class=\"root\"><span class=\"radicand\">" + value.inRoot + (value.isComplex ? " i" : "")
+        console.log(value);
+        
+        let result = "± "
+        if (!value.outRoot.eq(new Big("1")))
+            result += value.outRoot
+        if (!value.inRoot.eq(new Big("1")))
+            result += " <span class=\"root\"><span class=\"radicand\">" + value.inRoot + "</span></span>"
+        if (value.isComplex)
+            result += " i"
+        result_field.innerHTML = result
     } else {
 
         result_field.innerHTML = "± " + parse_value(value.number) + (value.isComplex ? " i" : "")
