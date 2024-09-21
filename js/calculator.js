@@ -68,8 +68,9 @@ function parse_value(val) {
     let str = mantiss.valueOf().substring(2);
 
     var parts = str.match(/.{1,3}/g);
-    var new_value = parts.join(" ");
+    var new_value = parts?.join(" ") ?? "";
+    if (new_value !== "")
+        new_value = "." + new_value;
 
-    console.log(result.valueOf(), new_value);
-    return result.valueOf() + "." + new_value;
+    return result.valueOf() + new_value;
 }
