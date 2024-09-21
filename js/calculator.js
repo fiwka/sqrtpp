@@ -21,12 +21,21 @@ function do_magic(e) {
     const input = read_input()
 
     let result;
-    if (input.radical === "0") {
-        result = 0
-    } else if (input.is_analytical) {
-        result = analyticSqrt(input.radical)
-    } else {
-        result = approximateSqrt(input.radical, input.precision)
+    try {
+        if (input.radical === "0") {
+            result = 0
+        } else if (input.is_analytical) {
+            result = analyticSqrt(input.radical)
+        } else {
+            result = approximateSqrt(input.radical, input.precision)
+        }
+    } catch (error) {
+        if (error.precision) {
+            alert("Ошибка при чтении точности, возможно вы что-то ввели не так. Пожалуйста, попробуйте ещё раз.")
+        } else {
+            alert("Ошибка при чтении подкоренного выражения, возможно вы что-то ввели не так. Пожалуйста, попробуйте ещё раз.")
+        }
+        return;
     }
 
     update_view(result, input.is_analytical)

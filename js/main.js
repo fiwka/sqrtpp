@@ -23,7 +23,7 @@ class Error {
  * */
 function parseInput(str, big) {
     if (!NUMBER_REGEX.test(str))
-        throw new Error("format_error", !!big)
+        throw new Error("format_error", !big)
 
     return big ? new Big(str) : +str
 }
