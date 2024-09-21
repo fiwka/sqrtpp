@@ -21,7 +21,9 @@ function do_magic(e) {
     const input = read_input()
 
     let result;
-    if (input.is_analytical) {
+    if (input.radical === "0") {
+        result = 0
+    } else if (input.is_analytical) {
         result = analyticSqrt(input.radical)
     } else {
         result = approximateSqrt(input.radical, input.precision)
@@ -57,7 +59,6 @@ function update_view(value, is_analytical) {
             result += " i"
         result_field.innerHTML = result
     } else {
-
         result_field.innerHTML = "± " + parse_value(value.number) + (value.isComplex ? " i" : "")
     }
 }
