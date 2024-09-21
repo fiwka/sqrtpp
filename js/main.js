@@ -1,5 +1,6 @@
 // регулярное выражение для определения является ли содержимое строки числом
 const NUMBER_REGEX = /^-?\d+(.\d+)?$/
+Big.RM = Big.roundHalfUp;
 
 class Error {
 
@@ -37,7 +38,9 @@ function parseInput(str, big) {
  * */
 function approximateSqrt(x, precision) {
     x = parseInput(x, true)
-    Big.DP = parseInput(precision)
+    const pr = parseInput(precision)
+    Big.DP = pr
+    Big.NE = -(pr + 1)
     return {
         isComplex: x.lt(0),
         number: x.abs().sqrt()
