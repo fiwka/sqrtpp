@@ -100,3 +100,52 @@ function apply_language(lang) {
         element.innerHTML = lang_arr[i];
     }
 }
+
+function initLangSystem() {
+    let langs = JSON.parse(localStorage.getItem("langs"));
+    if (langs === null) {
+        langs = {}
+        langs[LANG_EN.lang_name_texbox] = LANG_EN;
+        langs[LANG_RU.lang_name_texbox] = LANG_RU;
+        langs[LANG_SP.lang_name_texbox] = LANG_SP;
+        langs[LANG_ZH.lang_name_texbox] = LANG_ZH;
+    
+        localStorage.setItem("langs", JSON.stringify(langs));
+    }
+    
+    const SELECT = document.getElementById("lang_select");
+    SELECT.innerHTML = "";
+    Object.values(langs).forEach(lang => {
+        const option = document.createElement("option");
+        const text = document.createTextNode(lang.lang_name_texbox);
+        option.appendChild(text);
+        option.value = lang.lang_name_texbox;
+        SELECT.appendChild(option);
+    });
+    
+    apply_language(LANG_EN);
+    SELECT.addEventListener("change", e => apply_language(langs[e.target.value]));
+}
+
+function addlang(e) {
+    e.preventDefault();
+
+    const values = [];
+    Object.values(LANG_INPUTS).forEach(param_input_object => {
+        values.push(param_input_object.value);
+    });
+    const new_lang = new Lang(...values);
+    let langs = JSON.parse(localStorage.getItem("langs"));
+    if (Object.keys(langs).includes(new_lang.lang_name_texbox)) {
+        alert("Language with this name alredy exists! Please try another name.");
+        return;
+    }
+
+    langs[new_lang.lang_name_texbox] = new_lang;
+    localStorage.setItem("langs", JSON.stringify(langs));
+
+    initLangSystem()
+}
+
+initLangSystem()
+document.getElementById("lang_creation_form").addEventListener("submit", addlang)

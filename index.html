@@ -7,66 +7,66 @@
     <script src="js/big.min.js"></script>
 
     <script src="js/main.js" defer></script>
+    <script src="js/localstorage.js" defer></script>
     <script src="js/lang.js" defer></script>
     <script src="js/calculator.js" defer></script>
 
+    <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <main class="app">
-        <div class="functional_part">
-            <div class="calc">
-                <div class="lang_choose">
-                    <label for="lang_select" id="lang_select_label">Выберите язык:</label>
-                    <select name="lang" id="lang_select">
-                        <option value="Русский">Русский</option>
-                        <option value="English">English</option>
-                        <option value="Español">Español</option>
-                        <option value="中国人">中国人</option>
-                    </select>
+<body class="min-vh-100">
+    <main class="app container-fluid min-vh-100">
+        <div class="row min-vh-100">
+            <div class="functional_part col-md d-flex flex-column justify-content-between min-vh-100">
+                <div class="calc">
+                    <div class="lang_choose">
+                        <label for="lang_select" id="lang_select_label"></label>
+                        <select name="lang" id="lang_select"></select>
+                    </div>
+                    <form class="calc_form">
+                        <div class="params">
+                            <div class="precision_container">
+                                <label for="precision_textbox" id="precision_textbox_label"></label>
+                                <input type="number" min="0" max="1000" step="1" value="10" name="precision" id="precision_textbox">
+                            </div>
+                            <div class="is_analytical_container">
+                                <input type="radio" name="approximation" id="approximation_radio_1" value="false" checked>
+                                <label for="approximation_radio_1" id="approximation_radio_1_label"></label>
+                                <br/>
+                                <input type="radio" name="approximation" id="approximation_radio_2" value="true">
+                                <label for="approximation_radio_2" id="approximation_radio_2_label"></label>
+                            </div>
+                        </div>
+                        <div class="radical">
+                            <label for="radical_texbox" id="radical_texbox_label"></label>
+                            <span class="root">
+                                <input type="text" name="radical" id="radical_texbox" class="radicand">
+                            </span>
+                        </div>
+                        <button type="submit" id="submit_button"></button>
+                    </form>
+                    <div class="result_label" id="result_label"></div>
+                    <div class="result">
+                    </div>
                 </div>
-                <form class="calc_form">
-                    <div class="params">
-                        <div class="precision_container">
-                            <label for="precision_textbox" id="precision_textbox_label">Укажите точность вычислений</label>
-                            <input type="number" min="0" max="1000000" step="1" value="10" name="precision" id="precision_textbox">
-                        </div>
-                        <div class="is_analytical_container">
-                            <label for="approximation_radio_1" id="approximation_radio_1_label">Приблизительные вычисления</label>
-                            <input type="radio" name="approximation" id="approximation_radio_1" value="false" checked>
-                            <label for="approximation_radio_2" id="approximation_radio_2_label">Точные вычисления</label>
-                            <input type="radio" name="approximation" id="approximation_radio_2" value="true">
-                        </div>
-                    </div>
-                    <div class="radical">
-                        <label for="radical_texbox" id="radical_texbox_label">Введите подкоренное выражение:</label>
-                        <span class="root">
-                            <input type="text" name="radical" id="radical_texbox" class="radicand">
-                        </span>
-                    </div>
-                    <button type="submit" id="submit_button">Ввести</button>
-                </form>
-                <div class="result_label" id="result_label">Результат вычислений:</div>
-                <div class="result">
+                <div class="lang_creator">
+                    <form id="lang_creation_form">
+                        <button type="submit">Add language</button>
+                        <span></span>
+                        <input class="d-block" type="text" name="name" required id="lang_name_texbox"         placeholder="Language name">
+                        <input class="d-block" type="text" name="name" required id="lang_select_lang_texbox"  placeholder="Select language">
+                        <input class="d-block" type="text" name="name" required id="lang_precision_texbox"    placeholder="Specify the accuracy of calculations">
+                        <input class="d-block" type="text" name="name" required id="lang_approximate_r_texbox"placeholder="Approximate calculations">
+                        <input class="d-block" type="text" name="name" required id="lang_precise_r_texbox"    placeholder="Precise calculations">
+                        <input class="d-block" type="text" name="name" required id="lang_radical_texbox"      placeholder="Enter the radical expression">
+                        <input class="d-block" type="text" name="name" required id="lang_enter_texbox"        placeholder="Enter">
+                        <input class="d-block" type="text" name="name" required id="lang_result_texbox"       placeholder="Calculation result">
+                        <input class="d-block" type="text" name="name" required id="lang_title_texbox"        placeholder="Title">
+                    </form>
                 </div>
             </div>
-            <div class="lang_creator">
-                <form onsubmit="addlang(e)">
-                    <button type="submit">Add language</button>
-                    <span></span>
-                    <input type="text" name="name" id="lang_name_texbox"         placeholder="Language name">
-                    <input type="text" name="name" id="lang_select_lang_texbox"  placeholder="Select language">
-                    <input type="text" name="name" id="lang_precision_texbox"    placeholder="Specify the accuracy of calculations">
-                    <input type="text" name="name" id="lang_approximate_r_texbox"placeholder="Approximate calculations">
-                    <input type="text" name="name" id="lang_precise_r_texbox"    placeholder="Precise calculations">
-                    <input type="text" name="name" id="lang_radical_texbox"      placeholder="Enter the radical expression">
-                    <input type="text" name="name" id="lang_enter_texbox"        placeholder="Enter">
-                    <input type="text" name="name" id="lang_result_texbox"       placeholder="Calculation result">
-                    <input type="text" name="name" id="lang_title_texbox"        placeholder="Title">
-                </form>
-            </div>
+            <div class="docs col-md"></div>
         </div>
-        <div class="docs"></div>
     </main>
 </body>
 </html>
