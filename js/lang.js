@@ -135,7 +135,7 @@ function init_language_system() {
 
     let selected_language = localStorage.getItem("selected_language")
     if (selected_language === null) {
-        selected_language = "English"
+        selected_language = "Русский"
         localStorage.setItem("selected_language", selected_language)
     }
     SELECTED_LANGUAGE = LANGUAGES[selected_language]
