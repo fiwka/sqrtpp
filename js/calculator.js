@@ -10,7 +10,7 @@ class input_object {
 const INPUT_FIELDS = Object.freeze(new input_object(
     document.getElementById("approximation_radio_2"),
     document.getElementById("precision_textbox"),
-    document.getElementById("radical_texbox")
+    document.getElementById("radical_textbox")
 ))
 
 document.querySelector(".calc_form").addEventListener("submit", do_magic);
@@ -31,9 +31,9 @@ function do_magic(e) {
         }
     } catch (error) {
         if (error.precision) {
-            alert("Ошибка при чтении точности, возможно вы что-то ввели не так. Пожалуйста, попробуйте ещё раз.")
+            alert(SELECTED_LANGUAGE.precision_error)
         } else {
-            alert("Ошибка при чтении подкоренного выражения, возможно вы что-то ввели не так. Пожалуйста, попробуйте ещё раз.")
+            alert(SELECTED_LANGUAGE.radical_error)
         }
         return;
     }
@@ -41,13 +41,40 @@ function do_magic(e) {
     update_view(result, input.is_analytical)
 }
 
-// Читает данные из формы.
+/**
+ * Читает данные из формы
+ * @returns {input_object}
+ */
 function read_input() {
-    return new input_object(
+    let input = new input_object(
         INPUT_FIELDS.is_analytical.checked,
         INPUT_FIELDS.precision.value,
         INPUT_FIELDS.radical.value
-    );
+    )
+    input = beautify_input(input)
+    return input
+}
+
+/**
+ * Преобразует строки согласно шаблону
+ * @param {input_object} input
+ * @returns {input_object}
+ */
+function beautify_input(input) {
+    input.radical = beautify_number_string(input.radical)
+    input.precision = beautify_number_string(input.precision)
+    return input;
+}
+
+/**
+ * Преобразует строку согласно шаблону
+ * @param {string} str
+ * @returns {string}
+ */
+function beautify_number_string(str) {
+    str = str.replaceAll(" ", "")
+    str = str.replaceAll(",", ".")
+    return str
 }
 
 // Функция отрисовки
