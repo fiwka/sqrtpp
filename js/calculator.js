@@ -21,8 +21,15 @@ function do_magic(e) {
     const input = read_input()
 
     let result;
+
     try {
-        if (input.radical.count("0") === input.radical.length) {
+        let zeroes = 0
+
+        for (let c of input.radical)
+            if (c === "0")
+                zeroes++
+
+        if (zeroes === input.radical.length) {
             result = 0
         } else if (input.is_analytical) {
             result = analyticSqrt(input.radical)
