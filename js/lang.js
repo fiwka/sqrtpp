@@ -186,6 +186,8 @@ LANG_FORM.addEventListener("submit", (e) => {
     }
 
     LANGUAGES[new_lang.name] = new_lang
+    const languages_string = JSON.stringify(LANGUAGES)
+    localStorage.setItem("languages", languages_string)
     create_language_option(new_lang)
     select_lang(new_lang)
 })
