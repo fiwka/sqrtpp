@@ -22,7 +22,7 @@ function do_magic(e) {
 
     let result;
     try {
-        if (input.radical === "0") {
+        if (input.radical.count("0") === input.radical.length) {
             result = 0
         } else if (input.is_analytical) {
             result = analyticSqrt(input.radical)
