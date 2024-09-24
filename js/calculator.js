@@ -45,7 +45,8 @@ function do_magic(e) {
         return;
     }
 
-    update_view(result, input.is_analytical)
+    const pr = parseInput(input.precision)
+    update_view(result, pr, input.is_analytical)
 }
 
 /**
@@ -85,10 +86,10 @@ function beautify_number_string(str) {
 }
 
 // Функция отрисовки
-function update_view(value, is_analytical) {
+function update_view(value, precision, is_analytical) {
     const result_field = document.querySelector(".result");
 
-    if (value === 0) {
+    if (value.number.eq(new Big("0"))) {
         result_field.innerHTML = "0"
     } else if (is_analytical) {
         console.log(value);
@@ -102,14 +103,18 @@ function update_view(value, is_analytical) {
             result += " i"
         result_field.innerHTML = result
     } else {
-        result_field.innerHTML = "± " + parse_value(value.number) + (value.isComplex ? " i" : "")
+        result_field.innerHTML = "± " + parse_value(value.number, precision) + (value.isComplex ? " i" : "")
     }
 }
 
-function parse_value(val) {
+function parse_value(val, precision) {
     let result = val.round(0, Big.roundDown);
     let mantiss = val.minus(result);
     let str = mantiss.valueOf().substring(2);
+
+    if (str.length < precision) {
+        str += '0'.repeat(precision - str.length);
+    }
 
     var parts = str.match(/.{1,3}/g);
     var new_value = parts?.join(" ") ?? "";
