@@ -89,11 +89,15 @@ function beautify_number_string(str) {
 function update_view(value, precision, is_analytical) {
     const result_field = document.querySelector(".result");
 
-    if (value.number.eq(new Big("0"))) {
+    if (value.number?.eq(new Big("0"))) {
+        result_field.innerHTML = "0"
+    }
+    if (value.outRoot?.eq(new Big("0"))) {
+        result_field.innerHTML = "0"
+    }
+    if (value.inRoot?.eq(new Big("0"))) {
         result_field.innerHTML = "0"
     } else if (is_analytical) {
-        console.log(value);
-        
         let result = "± "
         if (!value.outRoot.eq(new Big("1")))
             result += value.outRoot
