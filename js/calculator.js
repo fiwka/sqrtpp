@@ -38,16 +38,14 @@ function do_magic(e) {
         } else {
             result = approximateSqrt(input.radical, input.precision)
         }
+        update_view(result, pr, input.is_analytical)
     } catch (error) {
         if (error.precision) {
             alert(SELECTED_LANGUAGE.precision_error)
         } else {
             alert(SELECTED_LANGUAGE.radical_error)
         }
-        return;
     }
-
-    update_view(result, pr, input.is_analytical)
 }
 
 /**
