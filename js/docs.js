@@ -36,7 +36,7 @@ const ENGLISH_DOCS = Object.freeze(new Docs(
             "A) Yes, to do this, just download it from our official page on GitHub."
         ],
         [
-            "The calculator is developed and supported by a team of four students from HSE Perm. All program updates are posted on the official GitHub page – https://fiwka.github.io/sqrtpp/",
+            "The calculator is developed and supported by a team of four students from HSE Perm. All program updates are posted on the official GitHub page – <a href='https://github.com/fiwka/sqrtpp'>https://github.com/fiwka/sqrtpp/</a>",
             "If you encounter any difficulties while working with the program, you can write to us via email, telegram or VK.",
             "Email – asrepin@edu.hse.ru\n" +
             "Phone – +79193677953\n" +
@@ -71,7 +71,7 @@ const RUSSIAN_DOCS = Object.freeze(new Docs(
             "О) Да, для этого достаточно скачать её с нашей официальной страницы на GitHub."
         ],
         [
-            "Калькулятор разрабатывается и поддерживается командой из четырех студентов НИУ ВШЭ – Пермь. Все обновления программы выходят на официальной странице GitHub – https://fiwka.github.io/sqrtpp/",
+            "Калькулятор разрабатывается и поддерживается командой из четырех студентов НИУ ВШЭ – Пермь. Все обновления программы выходят на официальной странице GitHub – <a href='https://github.com/fiwka/sqrtpp'>https://github.com/fiwka/sqrtpp/</a>",
             "Если во время работы с программой у вас появились различные трудности, то можете написать нам по email, telegram или VK.",
             "Email – asrepin@edu.hse.ru\n" +
             "Телефон – +79193677953\n" +
@@ -106,7 +106,7 @@ const SPANISH_DOCS = Object.freeze(new Docs(
             "R) Sí, para hacer esto, simplemente descárgalo de nuestra página oficial en GitHub."
         ],
         [
-            "La calculadora es desarrollada y mantenida por un equipo de cuatro estudiantes de la Escuela Superior de Economía de la Universidad Nacional de Investigación de Perm. Todas las actualizaciones del programa se publican en la página oficial de GitHub: https://fiwka.github.io/sqrtpp/",
+            "La calculadora es desarrollada y mantenida por un equipo de cuatro estudiantes de la Escuela Superior de Economía de la Universidad Nacional de Investigación de Perm. Todas las actualizaciones del programa se publican en la página oficial de GitHub: <a href='https://github.com/fiwka/sqrtpp'>https://github.com/fiwka/sqrtpp/</a>",
             "Si encuentra varias dificultades mientras trabaja con el programa, puede escribirnos por correo electrónico, Telegram o VK.",
             "Correo electrónico: asrepin@edu.hse.ru Teléfono: +79193677953 Telegrama: @milerook"
         ]
@@ -139,7 +139,7 @@ const CHINESE_DOCS = Object.freeze(new Docs(
             "A) 是的，为此，只需从我们的 GitHub 官方页面下载即可。"
         ],
         [
-            "该计算器由来自彼尔姆国立研究大学高等经济学院的四名学生组成的团队开发和维护。所有程序更新均在官方 GitHub 页面上发布 - https://fiwka.github.io/sqrtpp/",
+            "该计算器由来自彼尔姆国立研究大学高等经济学院的四名学生组成的团队开发和维护。所有程序更新均在官方 GitHub 页面上发布 - <a href='https://github.com/fiwka/sqrtpp'>https://github.com/fiwka/sqrtpp/</a>",
             "如果您在使用该程序时遇到各种困难，您可以通过电子邮件、电报或 VK 给我们写信。",
             "电子邮件 – asrepin@edu.hse.ru 电话 – +79193677953 电报 – @milerook"
         ]
@@ -167,7 +167,7 @@ function set_docs(doc) {
 
         for (let j = 0; j < doc.paragraphs[i].length; j++) {
             const p = document.createElement("p")
-            p.textContent = doc.paragraphs[i][j]
+            p.innerHTML = doc.paragraphs[i][j]
 
             docs_root.appendChild(p)
         }
