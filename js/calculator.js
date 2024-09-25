@@ -21,9 +21,11 @@ function do_magic(e) {
     const input = read_input()
 
     let result;
+    let pr = 0;
 
     try {
         let zeroes = 0
+        pr = parseInput(input.precision)
 
         for (let c of input.radical)
             if (c === "0")
@@ -45,7 +47,6 @@ function do_magic(e) {
         return;
     }
 
-    const pr = parseInput(input.precision)
     update_view(result, pr, input.is_analytical)
 }
 
