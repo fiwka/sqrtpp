@@ -156,12 +156,12 @@ const DEFAULT_DOCS = Object.freeze({
 function set_docs(doc) {
     const docs_root = document.querySelector(".docs")
     docs_root.innerHTML = ``
-    const h1 = document.createElement("h1")
+    const h1 = document.createElement("h2")
     h1.textContent = doc.main_header
     docs_root.appendChild(h1)
 
     for (let i = 0; i < doc.headers.length; i++) {
-        const header = document.createElement("h2")
+        const header = document.createElement("h3")
         header.textContent = doc.headers[i]
         docs_root.appendChild(header)
 

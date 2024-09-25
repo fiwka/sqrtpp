@@ -31,7 +31,7 @@ function create_language_placeholder() {
 function create_language_outputs() {
     let language_outputs = new Language()
     language_outputs.name = null
-    language_outputs.title = document.querySelector("title")
+    language_outputs.title = [document.querySelector("title"), document.querySelector("#title")],
     language_outputs.language_select = document.getElementById("lang_select_label")
     language_outputs.precision = document.getElementById("precision_textbox_label")
     language_outputs.approximate_calculations = document.getElementById("approximation_radio_1_label")
@@ -158,8 +158,14 @@ function select_lang(language) {
     option.selected = true
 
     Object.entries(LANGUAGE_OUTPUTS).forEach(([key, value]) => {
-        if (value === null) return
-        value.textContent = language[key]
+        if (!value) return
+        if (Array.isArray(value)) {
+            value.forEach(v => {
+                v.textContent = language[key]
+            })
+        } else {
+            value.textContent = language[key]
+        }
     })
 
     if (DEFAULT_LANGUAGES.map(v => v.name).includes(SELECTED_LANGUAGE.name)) {
