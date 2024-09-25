@@ -205,7 +205,7 @@ Object.keys(LANGUAGE_PLACEHOLDER).forEach(key => {
     input.placeholder = LANGUAGE_PLACEHOLDER[key];
     input.name = key;
     input.id = "lang_creation_" + key;
-    input.classList.add("d-block", "lang-select-option", "form-control");
+    input.classList.add("d-block", "lang-select-option", "form-control", "mt-1");
 
     LANG_FORM.appendChild(input);
 })

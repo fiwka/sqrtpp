@@ -28,11 +28,11 @@
                     </div>
                     <form class="calc_form">
                         <div class="params">
-                            <div class="precision_container">
+                            <div class="precision_container mt-3">
                                 <label class="form-label" for="precision_textbox" id="precision_textbox_label"></label>
                                 <input class="form-control" type="number" min="0" max="1000" step="1" value="10" name="precision" id="precision_textbox">
                             </div>
-                            <div class="is_analytical_container">
+                            <div class="is_analytical_container mt-3">
                                 <input class="form-check-input" type="radio" name="approximation" id="approximation_radio_1" value="false" checked>
                                 <label class="form-check-label" for="approximation_radio_1" id="approximation_radio_1_label"></label>
                                 <br/>
@@ -40,13 +40,13 @@
                                 <label class="form-check-label" for="approximation_radio_2" id="approximation_radio_2_label"></label>
                             </div>
                         </div>
-                        <div class="radical">
+                        <div class="radical mt-3">
                             <label class="form-label" for="radical_textbox" id="radical_textbox_label"></label>
                             <span class="root">
-                                <input class="form-control radicand" type="text" name="radical" id="radical_textbox">
+                                <input class="form-control radicand ms-1" type="text" name="radical" id="radical_textbox">
                             </span>
                         </div>
-                        <button type="submit" id="submit_button" class="btn btn-secondary"></button>
+                        <button type="submit" id="submit_button" class="btn btn-secondary mt-3"></button>
                     </form>
                     <div class="result_label" id="result_label"></div>
                     <div class="result">
@@ -58,7 +58,7 @@
                     </form>
                 </div>
             </div>
-            <div class="docs col-md-6 col-12"></div>
+            <div class="docs col-md-6 col-12 mt-3"></div>
         </div>
     </main>
 </body>
