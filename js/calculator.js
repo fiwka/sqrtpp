@@ -98,6 +98,8 @@ function update_view(value, precision, is_analytical) {
         result_field.innerHTML = "0"
     } else if (is_analytical) {
         let result = "± "
+        if (value.outRoot.eq(new Big("1")) && value.inRoot.eq(new Big("1")))
+            result += "1"
         if (!value.outRoot.eq(new Big("1")))
             result += value.outRoot
         if (!value.inRoot.eq(new Big("1")))
